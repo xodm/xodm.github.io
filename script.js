@@ -26,7 +26,7 @@ function makeGraph(nodes, links) {
   var svg = d3.select("#graph")
     .style("width", "100%")
     .style("height", "100%");
-    svg.selectAll(".link").remove();
+  svg.selectAll(".link").remove();
   svg.selectAll(".node").remove();
   // Create the force simulation
   function resize() {
@@ -42,7 +42,8 @@ function makeGraph(nodes, links) {
   var simulation = d3.forceSimulation(nodes)
     .force("link", d3.forceLink(links).id(function (d) { return d.id; }).distance(230)) // Adjust the distance between nodes here
     .force("charge", d3.forceManyBody().strength(-200)) // Adjust the repulsion strength between nodes here
-    .force("center", d3.forceCenter(svg.attr("width") / 2, svg.attr("height") / 2));
+    .force("center", d3.forceCenter(svg.attr("width") / 2, svg.attr("height") / 2))
+    .force("collide", d3.forceCollide().radius(28)); // Prevent nodes from overlapping
 
   // Draw the links
   var link = svg.selectAll(".link")
@@ -65,15 +66,15 @@ function makeGraph(nodes, links) {
 
   // Update the positions of the nodes and links on each tick
   simulation.on("tick", function () {
+    // Keep the nodes within the boundaries of the screen
+    node.attr("cx", function (d) { return d.x = Math.max(28, Math.min(svg.attr("width") - 28, d.x)); })
+        .attr("cy", function (d) { return d.y = Math.max(28, Math.min(svg.attr("height") - 28, d.y)); });
+
     link
       .attr("x1", function (d) { return d.source.x; })
       .attr("y1", function (d) { return d.source.y; })
       .attr("x2", function (d) { return d.target.x; })
       .attr("y2", function (d) { return d.target.y; });
-
-    node
-      .attr("cx", function (d) { return d.x; })
-      .attr("cy", function (d) { return d.y; });
   });
 
   // Resize the graph when the window size changes
@@ -86,15 +87,34 @@ var nodes = [
   { id: 2 },
   { id: 3 },
   { id: 4 },
-  { id: 5 }
+  { id: 5 },
+  { id: 6 },
+  { id: 7 },
+  { id: 8 },
+  { id: 9 },
+  { id: 10 },
+  { id: 11 },
+  { id: 12 },
+  { id: 13 },
+  { id: 14 },
+  { id: 15 }
 ];
+
 var links = [
   { source: 1, target: 2 },
   { source: 1, target: 3 },
-  { source: 2, target: 3 },
-  { source: 3, target: 4 },
-  { source: 4, target: 5 },
-  { source: 5, target: 1 }
+  { source: 2, target: 4 },
+  { source: 2, target: 5 },
+  { source: 3, target: 6 },
+  { source: 3, target: 7 },
+  { source: 4, target: 8 },
+  { source: 4, target: 9 },
+  { source: 5, target: 10 },
+  { source: 5, target: 11 },
+  { source: 6, target: 12 },
+  { source: 6, target: 13 },
+  { source: 7, target: 14 },
+  { source: 7, target: 15 }
 ];
 var myGamePiece;
 var myObstacles = [];
