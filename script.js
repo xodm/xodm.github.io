@@ -17,25 +17,27 @@ var nodes = [
   ];
   
   // Set up the SVG element
-  var svg = d3.select("#graph"),
-      width = +svg.attr("width"),
-      height = +svg.attr("height"),
-      centerX = width / 2,
-      centerY = height / 2;
+  var svg = d3.select("#graph")
+  .style("width", "100%")
+  .style("height", "100%");
+
+var width = svg.node().getBoundingClientRect().width;
+var height = svg.node().getBoundingClientRect().height;
+var centerX = width / 2;
+var centerY = height / 2;
   
   // Create the force simulation
   var simulation = d3.forceSimulation(nodes)
     .force("link", d3.forceLink(links).id(function(d) { return d.id; }))
     .force("charge", d3.forceManyBody())
-    .force("center", d3.forceCenter(centerX, centerY));
+    .force("center", d3.forceCenter(width / 2, height / 2));
   
   // Draw the links
   var link = svg.selectAll(".link")
     .data(links)
     .enter().append("line")
       .attr("class", "link");
-  
-  // Draw the nodes
+  // Draw the nodesm
   var node = svg.selectAll(".node")
     .data(nodes)
     .enter().append("circle")
@@ -55,3 +57,29 @@ var nodes = [
       .attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; });
   });
+  
+  // Enable dragging behavior
+  function drag(simulation) {
+  
+    function dragstarted(event, d) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
+  
+    function dragged(event, d) {
+      d.fx = event.x;
+      d.fy = event.y;
+    }
+  
+    function dragended(event, d) {
+      if (!event.active) simulation.alphaTarget(0);
+      d.fx = null;
+      d.fy = null;
+    }
+  
+    return d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended);
+  }
