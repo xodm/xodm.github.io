@@ -1,3 +1,26 @@
+function drag(simulation) {
+  function dragStarted(event, d) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+  }
+
+  function dragged(event, d) {
+    d.fx = event.x;
+    d.fy = event.y;
+  }
+
+  function dragEnded(event, d) {
+    if (!event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
+
+  return d3.drag()
+    .on("start", dragStarted)
+    .on("drag", dragged)
+    .on("end", dragEnded);
+}
 // Sample data
 var nodes = [
   { id: 1 },
@@ -33,47 +56,26 @@ function resize() {
   simulation.force("center", d3.forceCenter(centerX, centerY));
   simulation.restart();
 }
-function drag(simulation) {
-  function dragStarted(event, d) {
-    if (!event.active) simulation.alphaTarget(0.3).restart();
-    d.fx = d.x;
-    d.fy = d.y;
-  }
 
-  function dragged(event, d) {
-    d.fx = event.x;
-    d.fy = event.y;
-  }
-
-  function dragEnded(event, d) {
-    if (!event.active) simulation.alphaTarget(0);
-    d.fx = null;
-    d.fy = null;
-  }
-
-  return d3.drag()
-    .on("start", dragStarted)
-    .on("drag", dragged)
-    .on("end", dragEnded);
-}
 // Create the force simulation
 var simulation = d3.forceSimulation(nodes)
-  .force("link", d3.forceLink(links).id(function(d) { return d.id; }))
-  .force("charge", d3.forceManyBody())
+  .force("link", d3.forceLink(links).id(function(d) { return d.id; }).distance(230)) // Adjust the distance between nodes here
+  .force("charge", d3.forceManyBody().strength(-200)) // Adjust the repulsion strength between nodes here
   .force("center", d3.forceCenter(svg.attr("width") / 2, svg.attr("height") / 2));
 
 // Draw the links
 var link = svg.selectAll(".link")
   .data(links)
   .enter().append("line")
-    .attr("class", "link");
+    .attr("class", "link")
+    .style("stroke-width", 8); // Adjust the stroke width here
 
 // Draw the nodes
 var node = svg.selectAll(".node")
   .data(nodes)
   .enter().append("circle")
     .attr("class", "node")
-    .attr("r", 5)
+    .attr("r", 25) // Adjust the node size here
     .call(drag(simulation)); // Enable dragging
 
 // Update the positions of the nodes and links on each tick
