@@ -68,6 +68,7 @@ var link = svg.selectAll(".link")
   .data(links)
   .enter().append("line")
     .attr("class", "link")
+    .style("stroke", "black")
     .style("stroke-width", 8); // Adjust the stroke width here
 
 // Draw the nodes
@@ -75,7 +76,10 @@ var node = svg.selectAll(".node")
   .data(nodes)
   .enter().append("circle")
     .attr("class", "node")
-    .attr("r", 25) // Adjust the node size here
+    .style("fill", "#FF0000")
+    .style("stroke", "black") // Set the stroke color of the nodes
+    .style("stroke-width", 4) // Set
+    .attr("r", 28) // Adjust the node size here
     .call(drag(simulation)); // Enable dragging
 
 // Update the positions of the nodes and links on each tick
