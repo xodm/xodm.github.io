@@ -1,26 +1,26 @@
 body {
-  background-color: rgb(250, 111, 111);
+  background-color: rgb(158, 177, 250);
 }
 
 .button-container {
   display: flex;
-  margin: 20px;
-  margin-bottom: 40px;
+  margin: 40px;
+  margin-bottom: 80px;
   justify-content: center;
   align-items: center;
 }
 
 .bubble-button {
   border: none;
-  border-radius: 100px;
-  padding: 20px;
-  margin: 10px;
+  border-radius: 200px;
+  padding: 40px;
+  margin: 20px;
   background-color: wheat;
   color: #0b0b0b;
-  font-size: 32px;
+  font-size: 64px;
   text-align: center;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
   font-family: "Arial", sans-serif;
 }
 
@@ -30,16 +30,17 @@ body {
 
 p {
   text-align: center;
+  font-size: 64px;
 }
 
 .noteBoxes {
-  border: 6px solid;
-  border-radius: 40px;
-  padding: 20px;
-  width: 600px;
+  border: 12px solid;
+  border-radius: 80px;
+  padding: 40px;
+  width: 1200px;
   background-color: rgb(188, 181, 247);
-  margin: 20px auto;
-  margin-bottom: 40px;
+  margin: 40px auto;
+  margin-bottom: 80px;
   font-family: "Arial", sans-serif;
-  font-size: 32px;
+  font-size: 64px;
 }
