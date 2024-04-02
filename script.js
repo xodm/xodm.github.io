@@ -33,7 +33,7 @@ var nodes = [
     .enter().append("line")
       .attr("class", "link");
   
-  // Draw the nodes
+  // Draw the nodesm
   var node = svg.selectAll(".node")
     .data(nodes)
     .enter().append("circle")
