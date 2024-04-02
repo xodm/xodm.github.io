@@ -1,3 +1,42 @@
 body {
-    background-color: rgb(184, 199, 255);
-  }
+  background-color: rgb(250, 111, 111);
+}
+.button-container {
+  display: flex;
+  margin: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.bubble-button {
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  margin: 5px;
+  background-color: wheat;
+  color: #0b0b0b;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+}
+
+.bubble-button:hover {
+  background-color: #f5f5f5;
+}
+p {
+  text-align: center; 
+}
+
+.noteBoxes {
+  border: 3px solid;
+  border-radius: 20px;
+  padding: 10px;
+  width: 300px;
+  background-color: rgb(188, 181, 247);
+  margin: 10px auto;
+  margin-bottom: 20px;
+  font-family: "Arial", sans-serif;
+}
