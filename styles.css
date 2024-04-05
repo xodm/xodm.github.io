@@ -27,7 +27,13 @@ body {
 .bubble-button:hover {
   background-color: #f5f5f5;
 }
-
+#blink_text{	
+  animation-name:blink;
+  width:280px;
+  animation-duration:2s;
+  animation-timing-function:ease-in;
+  animation-iteration-count:Infinite;
+  }
 p {
   text-align: center;
   font-size: 64px;
