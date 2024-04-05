@@ -42,11 +42,19 @@ p {
 .noteBoxes {
   border: 12px solid;
   border-radius: 80px;
-  padding: 40px;
-  width: 1200px;
+  padding: 20px; /* Adjust the padding value as needed */
+  width: 100%; /* Set the width to 100% to occupy the full width of the container */
+  max-width: 600px; /* Set a maximum width to prevent it from stretching too much */
   background-color: rgb(188, 181, 247);
-  margin: 40px auto;
-  margin-bottom: 80px;
+  margin: 20px auto; /* Adjust the margin value as needed */
   font-family: "Arial", sans-serif;
-  font-size: 64px;
+  font-size: 32px; /* Adjust the font size value as needed */
+}
+
+/* Add a media query to further adjust the styles for smaller screens */
+@media (max-width: 480px) {
+  .noteBoxes {
+    padding: 10px; /* Adjust the padding value for smaller screens */
+    font-size: 24px; /* Adjust the font size value for smaller screens */
+  }
 }
