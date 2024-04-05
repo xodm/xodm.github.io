@@ -21,6 +21,35 @@ function drag(simulation) {
     .on("drag", dragged)
     .on("end", dragEnded);
 }
+var pastelColors = [
+  "#FFB3BA", // Pastel Red
+  "#FFDFBA", // Pastel Orange
+  "#Baffc9", // Pastel Green
+  "#BAE1FF", // Pastel Blue
+  "#FFD8EA", // Pastel Pink
+  "#D8BAFF", // Pastel Purple
+  "#BAFFFD", // Pastel Turquoise
+  "#FFE6FF", // Pastel Lavender
+  "#BAFFC9", // Pastel Mint
+  "#F2C2E0", // Pastel Rose
+  "#C2E0F2", // Pastel Sky Blue
+  "#E0C2F2", // Pastel Lilac
+  "#BAFFEC", // Pastel Aquamarine
+  "#FFEDBA", // Pastel Apricot
+  "#C9BAFF", // Pastel Periwinkle
+];
+function getRandomPastelColor() {
+  var randomIndex = Math.floor(Math.random() * pastelColors.length);
+  return pastelColors[randomIndex];
+}
+
+function setRandomBackgroundColor() {
+  var randomColor = getRandomPastelColor();
+  document.body.style.backgroundColor = randomColor;
+}
+
+setRandomBackgroundColor()
+
 function makeGraph(nodes, links) {
   // Set up the SVG element
   var svg = d3.select("#graph")
@@ -58,7 +87,7 @@ function makeGraph(nodes, links) {
     .data(nodes)
     .enter().append("circle")
     .attr("class", "node")
-    .style("fill", "#FF0000")
+    .style("fill", pastelColors[getRandomInt(0, pastelColors.length-1)])
     .style("stroke", "black") // Set the stroke color of the nodes
     .style("stroke-width", 4) // Set
     .attr("r", 28) // Adjust the node size here
