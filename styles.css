@@ -11,7 +11,7 @@ body {
 }
 
 .bubble-button {
-  border: none;
+  border: 1px solid;
   border-radius: 200px;
   padding: 40px;
   margin: 20px;
@@ -40,7 +40,7 @@ p {
 }
 
 .noteBoxes {
-  border: 12px solid;
+  border: 9px solid;
   border-radius: 80px;
   padding: 20px; /* Adjust the padding value as needed */
   width: 100%; /* Set the width to 100% to occupy the full width of the container */
