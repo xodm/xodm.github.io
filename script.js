@@ -402,7 +402,7 @@ setTimeout(function() {
 
   // Continue with the next action
   proceed();
-}, 2700);
+}, 2400);
   
 }
 function disableAllButtons() {
